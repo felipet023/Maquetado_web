@@ -21,4 +21,9 @@ git push -u origin main
 (este empuja los cambios locales a la nube)
 
 git status
-(comprueba l estado de la rama 
+(comprueba el estado de la rama)
+
+git remote add origin 
+https://github.com/felipet023/Maquetado_web.git
+(Añade la dirección de su repoaitorio se hace o se ejecuta una única vez)
+
