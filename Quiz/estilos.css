@@ -1,0 +1,39 @@
+#titulo-principal {
+    text-align: center;
+    color: #020202;
+    font-size: 36px;
+    margin-top: 20px;
+
+}
+#parrafo {
+    text-align: justify;
+    color: #666;
+    font-size: 18px;
+    margin: 20px;
+    border: 3cm solid #ffffff;
+    width: 700px;
+        height: 200px;
+        margin-left: auto;
+        margin-right: auto;
+
+}
+#categorias {
+    text-align: justify;
+    color: #fc8f00;
+    font-size: 24px;
+    margin-top: 20px;
+    
+}
+#pasos {
+    text-align: justify;
+    color: #f17806;
+    font-size: 24px;
+    margin-top: 20px;
+}
+#dejanos-tus-datos {
+    text-align: justify;
+    color: #f08904;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
