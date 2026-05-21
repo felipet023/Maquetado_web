@@ -1,0 +1,80 @@
+/* llamar a elementos por su ID */
+#titulo-rico {
+    color: yellow;
+    font-size: 30px;
+
+}
+
+/* llamar a elementos por su clase */
+.subtitulo-estilo {
+    color: blue;
+    font-size: 30px;
+}
+
+/* llamar a elementos por su etiqueta */
+h2 {
+    color: red;
+    font-size: 30px;
+}
+li {
+    color: black;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    list-style-type: square;
+
+    .faltante {
+        color: red;
+        font-size: 20px;
+        font-family: Arial, Helvetica, sans-serif;
+        list-style-type: square;
+
+        .ingrediente {
+            color: green;
+            font-size: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            list-style-type: square;
+
+            #ingrediente-importante {
+                color: orange;
+                font-size: 40px;
+                font-weight: bold;
+                list-style-type: square;
+            }
+    }
+
+}
+}
+
+p {
+    color: aqua;
+    background-color: blueviolet;
+    font:bold;
+    border: 2px solid black;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    display: inline-flexbox;
+    width: 300px;
+    height: auto;
+    x: calc();
+    y: calc();
+    margin: auto;
+    padding: 0px;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: solid;
+    overflow-wrap: break-word;
+
+    
+
+}
+
+
+/*  <ul class="receta" id="receta-pan">
+    <li class="ingrediente">levadura </li>
+    <li class="ingrediente">sal </li>
+    <li class="ingrediente">azucar</li>
+    <li class="ingrediente">harina</li>
+    <li class="ingrediente"> miel</li>
+    <li class="faltante" id="falta">polvo de hornear </li>
+
+    </ul>
+/*
