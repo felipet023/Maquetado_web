@@ -1,0 +1,744 @@
+/* =============================================
+   styles.css
+   Green & Blue Aquamarine
+   ============================================= */
+
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+/* VARIABLES */
+:root{
+
+  --green-dark:#1a7a2e;
+  --green-mid:#2ea84a;
+
+  --blue-dark:#1565a8;
+  --blue-light:#d6ecfb;
+  --blue-border:#6db3e8;
+
+  --red:#c0392b;
+
+  --white:#ffffff;
+
+  --shadow:
+  0 8px 25px rgba(0,0,0,0.12);
+
+  --font-title:'Oswald', sans-serif;
+  --font-body:'Nunito', sans-serif;
+
+}
+
+/* BODY */
+body{
+
+  font-family:var(--font-body);
+
+  background:
+  linear-gradient(
+    135deg,
+    #dff2ff 0%,
+    #cfe9ff 50%,
+    #d8f7df 100%
+  );
+
+  min-height:100vh;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+
+  padding:2rem 1rem;
+
+}
+
+/* WRAPPER */
+.page-wrapper{
+  width:100%;
+  max-width:850px;
+}
+
+/* =============================================
+   RECIBO
+   ============================================= */
+
+.receipt-card{
+
+  width:100%;
+
+  background:var(--blue-light);
+
+  border:2px solid var(--blue-border);
+
+  border-radius:8px;
+
+  overflow:hidden;
+
+  box-shadow:var(--shadow);
+
+}
+
+/* =============================================
+   HEADER
+   ============================================= */
+
+.receipt-header{
+
+  display:grid;
+
+  grid-template-columns:auto 1fr auto;
+
+  gap:1rem;
+
+  padding:1rem;
+
+  border-bottom:2px solid var(--blue-border);
+
+}
+
+/* LOGO */
+
+.logo-block{
+  display:flex;
+  flex-direction:column;
+}
+
+.logo-title{
+
+  display:flex;
+  align-items:center;
+  gap:4px;
+
+  font-family:var(--font-title);
+
+  font-size:1.6rem;
+
+  font-weight:700;
+
+}
+
+.logo-green{
+  color:var(--green-dark);
+}
+
+.logo-blue{
+  color:var(--blue-dark);
+}
+
+.logo-sub{
+
+  color:var(--green-mid);
+
+  letter-spacing:4px;
+
+  font-size:0.75rem;
+
+  margin-top:2px;
+
+}
+
+.logo-tagline{
+
+  font-size:0.6rem;
+
+  margin-top:4px;
+
+  color:#555;
+
+}
+
+/* SERVICIOS */
+
+.services-block{
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+
+  gap:8px;
+
+}
+
+.services-row{
+
+  display:flex;
+  flex-wrap:wrap;
+
+  justify-content:center;
+
+  gap:12px;
+
+}
+
+.service-label{
+
+  display:flex;
+  align-items:center;
+
+  gap:5px;
+
+  font-size:0.75rem;
+
+  font-weight:700;
+
+  color:var(--blue-dark);
+
+}
+
+.service-label input{
+
+  accent-color:var(--green-dark);
+
+}
+
+/* PHONE */
+
+.phone-row{
+
+  display:flex;
+  align-items:center;
+
+  gap:5px;
+
+  font-size:0.8rem;
+
+  color:var(--blue-dark);
+
+  font-weight:700;
+
+}
+
+/* NUMERO */
+
+.receipt-number-block{
+
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+
+  gap:5px;
+
+}
+
+.receipt-label{
+
+  font-family:var(--font-title);
+
+  color:var(--green-dark);
+
+  letter-spacing:2px;
+
+  font-size:0.8rem;
+
+}
+
+.receipt-num-row{
+
+  display:flex;
+  align-items:center;
+
+  gap:6px;
+
+  border:2px solid var(--red);
+
+  padding:5px 10px;
+
+  border-radius:4px;
+
+  background:rgba(255,255,255,0.7);
+
+}
+
+.receipt-nro{
+
+  color:var(--red);
+
+  font-weight:700;
+
+}
+
+.receipt-num{
+
+  color:var(--red);
+
+  font-family:var(--font-title);
+
+  font-size:1.3rem;
+
+}
+
+/* =============================================
+   FECHAS
+   ============================================= */
+
+.dates-row{
+
+  display:flex;
+
+  gap:2rem;
+
+  flex-wrap:wrap;
+
+  padding:1rem;
+
+  border-bottom:2px solid var(--blue-border);
+
+}
+
+.date-group{
+
+  display:flex;
+  align-items:center;
+
+  gap:10px;
+
+}
+
+.date-boxes{
+
+  display:flex;
+
+  gap:5px;
+
+}
+
+.date-box{
+
+  width:35px;
+  height:28px;
+
+  border:1px solid var(--blue-border);
+
+  border-radius:4px;
+
+  text-align:center;
+
+  outline:none;
+
+}
+
+.date-box--year{
+  width:55px;
+}
+
+/* =============================================
+   DATOS USUARIO
+   ============================================= */
+
+.user-data-section{
+
+  padding:1rem;
+
+  border-bottom:2px solid var(--blue-border);
+
+  display:flex;
+  flex-direction:column;
+
+  gap:1rem;
+
+}
+
+/* FILAS */
+
+.user-row,
+.contact-row{
+
+  display:flex;
+
+  gap:1rem;
+
+  flex-wrap:wrap;
+
+}
+
+/* CAMPOS */
+
+.field-group{
+
+  display:flex;
+
+  align-items:flex-end;
+
+  gap:5px;
+
+}
+
+.field-group--wide{
+  flex:1;
+}
+
+.field-group--tel{
+  flex:1;
+}
+
+.field-group--xs{
+  width:70px;
+}
+
+.field-label{
+
+  font-size:0.75rem;
+
+  font-weight:700;
+
+}
+
+/* INPUTS */
+
+.underline-input{
+
+  border:none;
+
+  border-bottom:2px solid var(--blue-dark);
+
+  background:transparent;
+
+  outline:none;
+
+  padding:3px;
+
+}
+
+.underline-input--sm{
+  width:100px;
+}
+
+.underline-input--xs{
+  width:60px;
+}
+
+/* =============================================
+   TABLA
+   ============================================= */
+
+.description-table{
+
+  width:100%;
+
+  border-collapse:collapse;
+
+}
+
+/* HEAD */
+
+.description-table thead th{
+
+  border:1px solid var(--blue-border);
+
+  padding:8px;
+
+  background:rgba(255,255,255,0.4);
+
+  color:var(--blue-dark);
+
+  font-family:var(--font-title);
+
+  font-size:0.9rem;
+
+}
+
+.col-desc{
+  width:80%;
+}
+
+.col-total{
+  width:20%;
+}
+
+/* BODY */
+
+.description-table tbody td{
+
+  border:1px solid var(--blue-border);
+
+  height:35px;
+
+  padding:4px;
+
+}
+
+/* INPUT TABLA */
+
+.table-input{
+
+  width:100%;
+
+  border:none;
+
+  background:transparent;
+
+  outline:none;
+
+}
+
+/* =============================================
+   OBSERVACIONES
+   ============================================= */
+
+.obs-label{
+
+  padding:6px 10px;
+
+  border-top:2px solid var(--blue-border);
+
+  border-bottom:1px solid var(--blue-border);
+
+  font-family:var(--font-title);
+
+  color:var(--blue-dark);
+
+}
+
+.obs-textarea{
+
+  width:100%;
+
+  min-height:70px;
+
+  resize:none;
+
+  border:none;
+
+  background:transparent;
+
+  outline:none;
+
+  padding:10px;
+
+}
+
+/* =============================================
+   TOTAL
+   ============================================= */
+
+.total-section{
+
+  border-top:2px solid var(--blue-border);
+
+}
+
+.total-row{
+
+  display:flex;
+
+  justify-content:flex-end;
+
+  align-items:center;
+
+}
+
+.total-label{
+
+  padding:10px;
+
+  border-right:2px solid var(--blue-border);
+
+  font-family:var(--font-title);
+
+  color:var(--blue-dark);
+
+}
+
+.total-value-box{
+
+  width:20%;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:5px;
+
+  padding:8px;
+
+}
+
+.currency-sign{
+
+  font-weight:700;
+
+  color:var(--blue-dark);
+
+}
+
+.total-input{
+
+  flex:1;
+
+  border:none;
+
+  background:transparent;
+
+  outline:none;
+
+  text-align:right;
+
+  font-weight:700;
+
+}
+
+/* =============================================
+   FIRMAS
+   ============================================= */
+
+.signatures-section{
+
+  display:flex;
+
+  justify-content:space-around;
+
+  gap:2rem;
+
+  padding:2rem 1rem 1rem;
+
+  border-top:2px solid var(--blue-border);
+
+}
+
+.signature-block{
+
+  width:250px;
+
+  text-align:center;
+
+}
+
+.signature-line{
+
+  height:2px;
+
+  background:var(--green-mid);
+
+  margin-bottom:6px;
+
+}
+
+.signature-label{
+
+  font-family:var(--font-title);
+
+  color:var(--green-dark);
+
+  font-size:0.8rem;
+
+}
+
+/* =============================================
+   BOTONES
+   ============================================= */
+
+.buttons-container{
+
+  display:flex;
+
+  gap:1rem;
+
+  margin-top:1.5rem;
+
+  flex-wrap:wrap;
+
+  justify-content:center;
+
+}
+
+.action-btn{
+
+  border:none;
+
+  padding:12px 20px;
+
+  border-radius:10px;
+
+  cursor:pointer;
+
+  font-family:var(--font-title);
+
+  font-size:0.9rem;
+
+  color:white;
+
+  background:
+  linear-gradient(
+    135deg,
+    var(--blue-dark),
+    var(--green-mid)
+  );
+
+  box-shadow:0 4px 10px rgba(0,0,0,0.15);
+
+  transition:0.3s;
+
+}
+
+.action-btn:hover{
+
+  transform:translateY(-2px);
+
+  box-shadow:0 6px 18px rgba(0,0,0,0.22);
+
+}
+
+.secondary-btn{
+
+  background:
+  linear-gradient(
+    135deg,
+    var(--green-dark),
+    var(--green-mid)
+  );
+
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+
+@media(max-width:700px){
+
+  .receipt-header{
+    grid-template-columns:1fr;
+  }
+
+  .services-row{
+    justify-content:flex-start;
+  }
+
+  .user-row{
+    flex-direction:column;
+  }
+
+  .signatures-section{
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .signature-block{
+    width:80%;
+  }
+
+}
+
+/* =============================================
+   PRINT
+   ============================================= */
+
+@media print{
+
+  body{
+    background:white;
+  }
+
+  .buttons-container{
+    display:none;
+  }
+
+  .receipt-card{
+    box-shadow:none;
+  }
+
+}
