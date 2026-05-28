@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recibo - Green & Blue Aquamarine</title>
+  <link rel="stylesheet" href="segundo .css" />
+  <!-- Google Fonts: Oswald para títulos, Nunito para cuerpo -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ===== CONTENEDOR PRINCIPAL DE PÁGINA ===== -->
+  <main class="page-wrapper">
+
+    <!-- ===== RECIBO / TARJETA PRINCIPAL ===== -->
+    <article class="receipt-card" aria-label="Recibo Green and Blue Aquamarine">
+
+      <!-- ======================================
+           SECCIÓN 1: ENCABEZADO
+           Logo | Servicios | Teléfono | Nº Recibo
+      ======================================= -->
+      <header class="receipt-header">
+
+        <!-- Logo Green & Blue -->
+        <div class="logo-block">
+          <div class="logo-title">
+            <span class="logo-green">GREEN</span>
+            <span class="logo-leaf">🌿</span>
+            <span class="logo-blue">BLUE</span>
+          </div>
+          <div class="logo-sub">a q u a m a r i n e</div>
+          <div class="logo-tagline">Efecto y prevención en la funcionalidad física</div>
+        </div>
+
+        <!-- Servicios + Teléfono (columna central) -->
+        <div class="services-block">
+          <!-- Checkboxes de servicios -->
+          <div class="services-row">
+            <label class="service-label">
+              <input type="checkbox" name="rehabilitacion" />
+              REHABILITACIÓN
+            </label>
+            <label class="service-label">
+              <input type="checkbox" name="entretenimiento" />
+              ENTRETENIMIENTO
+            </label>
+            <label class="service-label">
+              <input type="checkbox" name="masajes" />
+              MASAJES
+            </label>
+            <label class="service-label">
+              <input type="checkbox" name="natacion" />
+              NATACIÓN
+            </label>
+          </div>
+          <!-- Teléfono -->
+          <div class="phone-row">
+            <span class="phone-icon">📱</span>
+            <span class="phone-number">318 868 8008 / 310 740 6038</span>
+          </div>
+        </div>
+
+        <!-- Número de recibo -->
+        <div class="receipt-number-block">
+          <div class="receipt-label">RECIBO</div>
+          <div class="receipt-num-row">
+            <span class="receipt-nro">Nº</span>
+            <span class="receipt-num">0480</span>
+          </div>
+        </div>
+
+      </header>
+
+      <!-- ======================================
+           SECCIÓN 2: FECHAS
+           Fecha Inicio | Fecha Finalización
+      ======================================= -->
+      <section class="dates-row" aria-label="Fechas">
+
+        <div class="date-group">
+          <label class="field-label">Fecha<br />Inicio</label>
+          <div class="date-boxes">
+            <input type="text" class="date-box" maxlength="2" placeholder="DD" aria-label="Día inicio" />
+            <input type="text" class="date-box" maxlength="2" placeholder="MM" aria-label="Mes inicio" />
+            <input type="text" class="date-box date-box--year" maxlength="4" placeholder="AAAA" aria-label="Año inicio" />
+          </div>
+        </div>
+
+        <div class="date-group">
+          <label class="field-label">Fecha<br />Finalización</label>
+          <div class="date-boxes">
+            <input type="text" class="date-box" maxlength="2" placeholder="DD" aria-label="Día finalización" />
+            <input type="text" class="date-box" maxlength="2" placeholder="MM" aria-label="Mes finalización" />
+            <input type="text" class="date-box date-box--year" maxlength="4" placeholder="AAAA" aria-label="Año finalización" />
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ======================================
+           SECCIÓN 3: DATOS DEL USUARIO
+           Señor(es) | Dirección
+      ======================================= -->
+      <section class="user-data-section" aria-label="Datos del usuario">
+
+        <div class="user-row">
+          <div class="field-group field-group--wide">
+            <label class="field-label" for="senores">Señor (es):</label>
+            <input type="text" id="senores" class="underline-input" aria-label="Nombre del señor o señora" />
+          </div>
+          <div class="field-group field-group--wide">
+            <label class="field-label" for="direccion">Dirección:</label>
+            <input type="text" id="direccion" class="underline-input" aria-label="Dirección" />
+          </div>
+        </div>
+
+        <div class="contact-row">
+          <div class="field-group field-group--tel">
+            <label class="field-label" for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" class="underline-input" aria-label="Teléfono" />
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="ciudad">Ciudad:</label>
+            <input type="text" id="ciudad" class="underline-input underline-input--sm" aria-label="Ciudad" />
+          </div>
+          <div class="field-group field-group--xs">
+            <label class="field-label" for="edad">Edad:</label>
+            <input type="text" id="edad" class="underline-input underline-input--xs" aria-label="Edad" />
+          </div>
+          <div class="field-group field-group--xs">
+            <label class="field-label" for="peso">Peso:</label>
+            <input type="text" id="peso" class="underline-input underline-input--xs" aria-label="Peso" />
+          </div>
+          <div class="field-group field-group--xs">
+            <label class="field-label" for="talla">Talla:</label>
+            <input type="text" id="talla" class="underline-input underline-input--xs" aria-label="Talla" />
+          </div>
+          <div class="field-group field-group--xs">
+            <label class="field-label" for="ppl">PPL:</label>
+            <input type="text" id="ppl" class="underline-input underline-input--xs" aria-label="PPL" />
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ======================================
+           SECCIÓN 4: TABLA DE DESCRIPCIÓN
+      ======================================= -->
+      <section class="description-section" aria-label="Descripción de servicios">
+        <table class="description-table">
+          <thead>
+            <tr>
+              <th class="col-desc" scope="col">DESCRIPCIÓN</th>
+              <th class="col-total" scope="col">VR. TOTAL</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Filas de descripción vacías (editables) -->
+            <tr>
+              <td class="desc-cell">
+                <input type="text" class="table-input" aria-label="Descripción línea 1" />
+              </td>
+              <td class="total-cell">
+                <input type="text" class="table-input table-input--right" aria-label="Valor total línea 1" />
+              </td>
+            </tr>
+            <tr>
+              <td class="desc-cell">
+                <input type="text" class="table-input" aria-label="Descripción línea 2" />
+              </td>
+              <td class="total-cell">
+                <input type="text" class="table-input table-input--right" aria-label="Valor total línea 2" />
+              </td>
+            </tr>
+            <tr>
+              <td class="desc-cell">
+                <input type="text" class="table-input" aria-label="Descripción línea 3" />
+              </td>
+              <td class="total-cell">
+                <input type="text" class="table-input table-input--right" aria-label="Valor total línea 3" />
+              </td>
+            </tr>
+            <tr>
+              <td class="desc-cell">
+                <input type="text" class="table-input" aria-label="Descripción línea 4" />
+              </td>
+              <td class="total-cell">
+                <input type="text" class="table-input table-input--right" aria-label="Valor total línea 4" />
+              </td>
+            </tr>
+            <tr>
+              <td class="desc-cell">
+                <input type="text" class="table-input" aria-label="Descripción línea 5" />
+              </td>
+              <td class="total-cell">
+                <input type="text" class="table-input table-input--right" aria-label="Valor total línea 5" />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ======================================
+           SECCIÓN 5: OBSERVACIONES
+      ======================================= -->
+      <section class="observations-section" aria-label="Observaciones">
+        <div class="obs-label">OBSERVACIONES</div>
+        <textarea
+          class="obs-textarea"
+          rows="3"
+          aria-label="Observaciones adicionales"
+          placeholder=""
+        ></textarea>
+      </section>
+
+      <!-- ======================================
+           SECCIÓN 6: TOTAL
+      ======================================= -->
+      <section class="total-section" aria-label="Total">
+        <div class="total-row">
+          <span class="total-label">TOTAL</span>
+          <div class="total-value-box">
+            <span class="currency-sign">$</span>
+            <input type="text" class="total-input" aria-label="Total a pagar" />
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================
+           SECCIÓN 7: FIRMAS
+      ======================================= -->
+      <footer class="signatures-section" aria-label="Firmas">
+        <div class="signature-block">
+          <div class="signature-line"></div>
+          <p class="signature-label">FIRMA DEL INSTRUCTOR</p>
+        </div>
+        <div class="signature-block">
+          <div class="signature-line"></div>
+          <p class="signature-label">FIRMA DEL USUARIO</p>
+        </div>
+      </footer>
+
+    </article>
+    <!-- FIN RECIBO -->
+
+  </main>
+  <!-- FIN CONTENEDOR PRINCIPAL -->
+
+</body>
+</html>
