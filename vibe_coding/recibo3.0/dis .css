@@ -1,0 +1,591 @@
+/* =================================================================
+   styles.css — Green & Blue Aquamarine · Sistema de Recibos v3.0
+   ================================================================= */
+ 
+/* ── RESET ──────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+/* ── VARIABLES ──────────────────────────────────────────────────── */
+:root {
+  /* Paleta */
+  --green-dark:   #1a7a2e;
+  --green-mid:    #2ea84a;
+  --green-light:  #4ec26a;
+  --blue-dark:    #1565a8;
+  --blue-mid:     #2980d4;
+  --blue-bg:      #d6ecfb;
+  --blue-border:  #6db3e8;
+  --red-accent:   #c0392b;
+  --white:        #ffffff;
+  --text-dark:    #1a2332;
+  --text-mid:     #3a4a5c;
+ 
+  /* Sombras */
+  --shadow-card:  0 12px 40px rgba(21,101,168,.20), 0 2px 8px rgba(0,0,0,.07);
+  --shadow-btn:   0 4px 14px rgba(21,101,168,.30);
+  --shadow-btn-g: 0 4px 14px rgba(26,122,46,.30);
+ 
+  /* Tipografía */
+  --font-display: 'Oswald', sans-serif;
+  --font-body:    'Nunito', sans-serif;
+ 
+  /* Misc */
+  --radius:       6px;
+  --tr:           .18s ease;
+ 
+  /* Colores de foco — anillo visible al navegar con teclado */
+  --focus-ring:   0 0 0 2.5px rgba(46,168,74,.40);
+  --focus-bg:     rgba(46,168,74,.06);
+}
+ 
+/* ── PÁGINA ─────────────────────────────────────────────────────── */
+body {
+  font-family: var(--font-body);
+  background: linear-gradient(135deg, #e8f4fd 0%, #c9e7f7 50%, #d8f0e8 100%);
+  min-height: 100vh;
+  padding: 0 1rem 3rem;
+}
+ 
+/* =================================================================
+   BARRA DE ACCIONES
+   ================================================================= */
+.action-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .6rem;
+  padding: .65rem 1.25rem;
+  background: rgba(255,255,255,.90);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1.5px solid rgba(109,179,232,.35);
+  box-shadow: 0 2px 12px rgba(21,101,168,.10);
+}
+ 
+/* Indicador de guardado */
+.save-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .72rem;
+  font-weight: 600;
+  color: var(--text-mid);
+}
+ 
+.save-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #bbb;
+  transition: background .4s;
+  flex-shrink: 0;
+}
+.save-dot.saving { background: #f39c12; animation: blink .8s infinite; }
+.save-dot.saved  { background: var(--green-mid); }
+.save-dot.error  { background: var(--red-accent); }
+ 
+@keyframes blink { 0%,100% { opacity:1; } 50% { opacity:.3; } }
+ 
+/* Grupo de botones */
+.action-buttons { display: flex; gap: .6rem; }
+ 
+/* =================================================================
+   BOTONES
+   ================================================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: .5rem 1.05rem;
+  border: none;
+  border-radius: var(--radius);
+  font-family: var(--font-display);
+  font-size: .77rem;
+  font-weight: 600;
+  letter-spacing: .5px;
+  cursor: pointer;
+  transition: transform var(--tr), box-shadow var(--tr), background var(--tr);
+  white-space: nowrap;
+  outline: none;
+}
+.btn:active { transform: translateY(1px) !important; }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+ 
+/* Foco de teclado en botones */
+.btn:focus-visible {
+  outline: 2px solid var(--blue-mid);
+  outline-offset: 2px;
+}
+ 
+/* Primario — azul */
+.btn--primary {
+  background: linear-gradient(135deg, var(--blue-dark), var(--blue-mid));
+  color: var(--white);
+  box-shadow: var(--shadow-btn);
+}
+.btn--primary:hover:not(:disabled) {
+  box-shadow: 0 6px 20px rgba(21,101,168,.45);
+  transform: translateY(-1px);
+}
+ 
+/* Secundario — verde */
+.btn--secondary {
+  background: linear-gradient(135deg, var(--green-dark), var(--green-mid));
+  color: var(--white);
+  box-shadow: var(--shadow-btn-g);
+}
+.btn--secondary:hover:not(:disabled) {
+  box-shadow: 0 6px 20px rgba(26,122,46,.45);
+  transform: translateY(-1px);
+}
+ 
+/* Ghost */
+.btn--ghost {
+  background: transparent;
+  color: var(--text-mid);
+  border: 1.5px solid var(--blue-border);
+}
+.btn--ghost:hover { background: var(--blue-bg); }
+ 
+/* =================================================================
+   TARJETA DEL RECIBO
+   ================================================================= */
+.page-wrapper {
+  max-width: 820px;
+  margin: 1.4rem auto 0;
+  display: flex;
+  justify-content: center;
+}
+ 
+.receipt-card {
+  width: 100%;
+  background: var(--blue-bg);
+  border: 2px solid var(--blue-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  animation: fadeUp .4s ease both;
+}
+ 
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(16px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+ 
+/* =================================================================
+   SEC 1 · ENCABEZADO
+   ================================================================= */
+.receipt-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: .75rem;
+  align-items: start;
+  padding: .85rem 1rem .55rem;
+  border-bottom: 1.5px solid var(--blue-border);
+}
+ 
+/* Logo */
+.logo-block { display:flex; flex-direction:column; gap:2px; min-width:138px; }
+ 
+.logo-title {
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.logo-green { color: var(--green-dark); }
+.logo-amp   { color: var(--green-mid); font-size:1.3rem; margin:0 1px; }
+.logo-blue  { color: var(--blue-dark); }
+.logo-sub {
+  font-size:.7rem; letter-spacing:3px; color:var(--green-mid);
+  font-weight:600; text-transform:lowercase; padding-left:2px;
+}
+.logo-tagline { font-size:.59rem; color:#666; font-style:italic; margin-top:2px; }
+ 
+/* Servicios */
+.services-block {
+  display:flex; flex-direction:column; align-items:center; gap:5px; padding-top:3px;
+}
+.services-row {
+  display:flex; flex-wrap:wrap; gap:4px 12px; justify-content:center;
+}
+.service-label {
+  display:flex; align-items:center; gap:4px;
+  font-family:var(--font-display); font-size:.69rem; font-weight:600;
+  color:var(--blue-dark); cursor:pointer; white-space:nowrap; letter-spacing:.3px;
+}
+.service-label input[type="checkbox"] {
+  width:13px; height:13px; accent-color:var(--green-dark);
+  cursor:pointer; flex-shrink:0;
+}
+.phone-row {
+  display:flex; align-items:center; gap:5px;
+  font-weight:700; font-size:.77rem; color:var(--blue-dark);
+}
+ 
+/* Número de recibo */
+.receipt-number-block {
+  display:flex; flex-direction:column; align-items:flex-end; gap:3px; min-width:110px;
+}
+.receipt-label {
+  font-family:var(--font-display); font-size:.78rem; font-weight:700;
+  color:var(--green-dark); letter-spacing:2px;
+}
+.receipt-num-row {
+  display:flex; align-items:center; gap:5px;
+  border:2px solid var(--red-accent); border-radius:4px;
+  padding:3px 10px; background:rgba(255,255,255,.65);
+}
+.receipt-nro { font-family:var(--font-display); color:var(--red-accent); font-size:.82rem; font-weight:700; }
+.receipt-num { font-family:var(--font-display); color:var(--red-accent); font-size:1.28rem; font-weight:700; letter-spacing:1px; }
+ 
+/* =================================================================
+   SEC 2 · FECHAS
+   ================================================================= */
+.dates-row {
+  display:flex; flex-wrap:wrap; gap:.8rem;
+  padding:.52rem 1rem; border-bottom:1.5px solid var(--blue-border); align-items:center;
+}
+.date-group { display:flex; align-items:center; gap:8px; }
+.date-boxes  { display:flex; gap:4px; }
+ 
+.date-box {
+  border: 1.5px solid var(--blue-border);
+  border-radius: 3px;
+  background: rgba(255,255,255,.7);
+  width: 32px;
+  height: 26px;
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: .73rem;
+  color: var(--text-dark);
+  outline: none;
+  transition: border-color var(--tr), box-shadow var(--tr), background var(--tr);
+}
+.date-box--year { width:48px; }
+ 
+/* Estado de foco — MEJORA: resaltado visible */
+.date-box:focus {
+  border-color: var(--green-mid);
+  box-shadow: var(--focus-ring);
+  background: var(--white);
+}
+.date-box::placeholder { font-size:.58rem; color:#aaa; }
+ 
+/* =================================================================
+   SEC 3 · DATOS DEL USUARIO
+   ================================================================= */
+.user-data-section {
+  padding:.5rem 1rem .4rem;
+  border-bottom:1.5px solid var(--blue-border);
+  display:flex; flex-direction:column; gap:.42rem;
+}
+.user-row    { display:flex; gap:1rem; }
+.contact-row { display:flex; flex-wrap:wrap; gap:.42rem 1rem; align-items:flex-end; }
+ 
+.field-group        { display:flex; align-items:flex-end; gap:4px; }
+.field-group--wide  { flex:1; min-width:130px; }
+.field-group--tel   { flex:1.5; min-width:120px; }
+.field-group--xs    { min-width:50px; }
+ 
+.field-label {
+  font-size:.7rem; font-weight:700; color:var(--text-dark);
+  white-space:nowrap; line-height:1.2; flex-shrink:0;
+}
+ 
+.underline-input {
+  border: none;
+  border-bottom: 1.5px solid var(--blue-dark);
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: .75rem;
+  color: var(--text-dark);
+  padding: 1px 3px;
+  outline: none;
+  width: 100%;
+  transition: border-bottom-color var(--tr), background var(--tr);
+  border-radius: 2px 2px 0 0;
+}
+.underline-input--sm { width:90px; }
+.underline-input--xs { width:52px; }
+ 
+/* MEJORA: foco en inputs de usuario */
+.underline-input:focus {
+  border-bottom-color: var(--green-mid);
+  background: var(--focus-bg);
+}
+ 
+/* =================================================================
+   SEC 4 · TABLA DESCRIPCIÓN
+   MEJORA CLAVE: table-layout fixed + colgroup = columnas estables
+   ================================================================= */
+.description-section { /* sin padding, la tabla toca los bordes del recibo */ }
+ 
+.description-table {
+  width: 100%;
+  border-collapse: collapse;
+  /* CRÍTICO: evita que las columnas se redimensionen al escribir */
+  table-layout: fixed;
+}
+ 
+/* Anchos definidos en el colgroup del HTML */
+.col-desc-width  { width: 74%; }
+.col-total-width { width: 26%; }
+ 
+/* Encabezados de la tabla */
+.th-desc,
+.th-total {
+  border: 1.5px solid var(--blue-border);
+  padding: 5px 10px;
+  font-family: var(--font-display);
+  font-size: .83rem;
+  font-weight: 700;
+  color: var(--blue-dark);
+  letter-spacing: .8px;
+  text-align: center;
+  background: rgba(255,255,255,.28);
+  /* Evita que el texto del encabezado desborde */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+ 
+.th-total {
+  border-left: 2px solid var(--blue-border) !important;
+}
+ 
+/* Celdas del cuerpo */
+.desc-cell,
+.total-cell {
+  border: 1px solid var(--blue-border);
+  height: 30px;
+  padding: 0;          /* Sin padding: el input lo llena 100% */
+  vertical-align: middle;
+  /* CRÍTICO: overflow hidden para que el texto no rompa el layout */
+  overflow: hidden;
+}
+ 
+.total-cell {
+  border-left: 2px solid var(--blue-border) !important;
+}
+ 
+/* MEJORA: inputs de tabla llenan toda la celda */
+.table-input {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 28px;
+  border: none;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: .75rem;
+  color: var(--text-dark);
+  padding: 3px 8px;
+  outline: none;
+  /* Evita que el texto desborde visualmente la celda */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: background var(--tr);
+}
+ 
+.table-input--right {
+  text-align: right;
+  /* Fuente ligeramente más pesada para los valores monetarios */
+  font-weight: 600;
+  letter-spacing: .3px;
+}
+ 
+/* MEJORA: foco en tabla — fondo sutil */
+.table-input:focus {
+  background: var(--focus-bg);
+  box-shadow: inset 0 0 0 1.5px rgba(46,168,74,.35);
+  white-space: normal;   /* Muestra texto completo cuando está activo */
+  overflow: visible;
+}
+ 
+/* MEJORA: fila activa de la tabla — highlight de toda la fila al enfocar su input */
+.desc-cell:focus-within,
+.total-cell:focus-within {
+  background: rgba(46,168,74,.05);
+}
+ 
+/* =================================================================
+   SEC 5 · OBSERVACIONES
+   ================================================================= */
+.observations-section { border-top: 1.5px solid var(--blue-border); }
+ 
+.obs-label {
+  font-family:var(--font-display); font-size:.78rem; font-weight:700;
+  color:var(--blue-dark); letter-spacing:.8px;
+  padding:4px 10px 2px;
+  border-bottom:1px solid var(--blue-border);
+}
+ 
+.obs-textarea {
+  width:100%; border:none; background:transparent;
+  font-family:var(--font-body); font-size:.75rem; color:var(--text-dark);
+  padding:6px 10px; resize:none; outline:none; min-height:55px; display:block;
+  transition: background var(--tr);
+}
+.obs-textarea:focus { background: var(--focus-bg); }
+ 
+/* =================================================================
+   SEC 6 · TOTAL
+   ================================================================= */
+.total-section { border-top: 2px solid var(--blue-border); }
+ 
+.total-row {
+  display:flex; justify-content:flex-end; align-items:center;
+}
+.total-label {
+  font-family:var(--font-display); font-size:.85rem; font-weight:700;
+  color:var(--blue-dark); letter-spacing:1.5px;
+  padding:6px 14px;
+  border-right:2px solid var(--blue-border);
+}
+.total-value-box {
+  display:flex; align-items:center;
+  /* Ancho fijo igual al 26% de la tabla para alineación perfecta */
+  width:26%; min-width: 80px;
+  padding:4px 8px; gap:3px;
+}
+.currency-sign {
+  font-family:var(--font-display); font-size:.9rem; font-weight:700; color:var(--blue-dark);
+  flex-shrink:0;
+}
+.total-input {
+  flex:1; border:none; background:transparent;
+  font-family:var(--font-display); font-size:.9rem; font-weight:700; color:var(--blue-dark);
+  text-align:right; outline:none; padding:0 2px; cursor:default;
+  /* Mismo estilo que los valores de la tabla */
+  letter-spacing:.3px;
+}
+ 
+/* =================================================================
+   SEC 7 · FIRMAS
+   ================================================================= */
+.signatures-section {
+  display:flex; justify-content:space-around; align-items:flex-end;
+  padding:1.1rem 1.5rem .85rem; border-top:2px solid var(--blue-border); gap:2rem;
+}
+.signature-block {
+  flex:1; display:flex; flex-direction:column; align-items:center;
+  gap:4px; max-width:240px;
+}
+.signature-line { width:100%; height:1.5px; background:var(--green-mid); }
+.signature-label {
+  font-family:var(--font-display); font-size:.76rem; font-weight:600;
+  color:var(--green-dark); letter-spacing:.8px; text-align:center;
+}
+ 
+/* =================================================================
+   MODAL
+   ================================================================= */
+.modal-overlay {
+  position:fixed; inset:0;
+  background:rgba(0,0,0,.45);
+  display:flex; align-items:center; justify-content:center;
+  z-index:200; padding:1rem;
+  animation:fadeIn .2s ease;
+}
+.modal-overlay[hidden] { display:none; }
+@keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
+ 
+.modal-card {
+  background:var(--white); border-radius:12px;
+  padding:2rem 1.75rem; max-width:360px; width:100%;
+  box-shadow:0 20px 60px rgba(0,0,0,.25);
+  text-align:center; animation:slideUp .22s ease;
+}
+@keyframes slideUp {
+  from{transform:translateY(18px);opacity:0;}
+  to  {transform:translateY(0);opacity:1;}
+}
+ 
+.modal-icon   { font-size:2.4rem; margin-bottom:.4rem; }
+.modal-title  { font-family:var(--font-display); font-size:1.12rem; color:var(--text-dark); margin-bottom:.45rem; }
+.modal-desc   { font-size:.79rem; color:var(--text-mid); line-height:1.5; margin-bottom:1.2rem; }
+.modal-actions { display:flex; gap:.7rem; justify-content:center; }
+ 
+/* =================================================================
+   TOAST
+   ================================================================= */
+.toast {
+  position:fixed; bottom:1.4rem; right:1.4rem;
+  background:var(--text-dark); color:var(--white);
+  font-family:var(--font-body); font-size:.77rem; font-weight:600;
+  padding:.6rem 1.15rem; border-radius:8px;
+  box-shadow:0 6px 24px rgba(0,0,0,.22);
+  opacity:0; transform:translateY(8px);
+  transition:opacity .28s ease, transform .28s ease;
+  pointer-events:none; z-index:300; max-width:280px;
+}
+.toast.show            { opacity:1; transform:translateY(0); }
+.toast.toast--success  { background:var(--green-dark); }
+.toast.toast--error    { background:var(--red-accent); }
+.toast.toast--info     { background:var(--blue-dark); }
+ 
+/* =================================================================
+   MODO PDF — clase temporal en body durante exportación
+   Oculta la barra de acciones y normaliza estilos para html2canvas
+   ================================================================= */
+body.pdf-mode .action-bar,
+body.pdf-mode .modal-overlay,
+body.pdf-mode .toast {
+  display: none !important;
+}
+body.pdf-mode .receipt-card {
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  animation: none !important;
+}
+/* Elimina los placeholders en PDF */
+body.pdf-mode input::placeholder,
+body.pdf-mode textarea::placeholder {
+  color: transparent !important;
+}
+ 
+/* =================================================================
+   RESPONSIVE
+   ================================================================= */
+@media (max-width: 640px) {
+  body { padding: 0 .4rem 2rem; }
+  .action-bar { padding:.55rem .75rem; }
+  .btn { padding:.42rem .8rem; font-size:.71rem; }
+ 
+  .receipt-header { grid-template-columns:1fr; gap:.5rem; }
+  .receipt-number-block { align-items:flex-start; }
+  .services-row { justify-content:flex-start; }
+  .logo-title { font-size:1.28rem; }
+ 
+  .dates-row { flex-direction:column; align-items:flex-start; }
+  .user-row  { flex-direction:column; gap:.5rem; }
+  .contact-row { gap:.4rem; }
+ 
+  .signatures-section { flex-direction:column; align-items:center; gap:1.1rem; }
+  .signature-block { width:80%; }
+ 
+  /* En móvil, la columna total ocupa un poco más */
+  .col-total-width { width:32%; }
+  .col-desc-width  { width:68%; }
+  .total-value-box { width:32%; }
+}
+ 
+/* =================================================================
+   IMPRESIÓN
+   ================================================================= */
+@media print {
+  body { background:white; padding:0; }
+  .action-bar, .toast, .modal-overlay { display:none !important; }
+  .receipt-card { box-shadow:none; border:1px solid #999; border-radius:0; }
+  input, textarea { border-color:#999 !important; }
+}

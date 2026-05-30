@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistema de Recibos — Green &amp; Blue Aquamarine</title>
+ 
+  <!-- Tipografías -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet" />
+ 
+  <!-- html2pdf.js — exportación PDF sin backend -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+ 
+  <link rel="stylesheet" href="dis .css" />
+  
+</head>
+<body>
+ 
+  <!-- ================================================
+       BARRA DE ACCIONES — se oculta al exportar PDF
+  ================================================= -->
+  <div class="action-bar" id="actionBar">
+ 
+    <div class="save-indicator" id="saveIndicator">
+      <span class="save-dot" id="saveDot"></span>
+      <span class="save-text" id="saveText">Guardado</span>
+    </div>
+ 
+    <div class="action-buttons">
+      <button class="btn btn--secondary" id="btnNuevo" title="Limpiar y crear nuevo recibo">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 5v14M5 12h14"/>
+        </svg>
+        Nuevo Recibo
+      </button>
+      <button class="btn btn--primary" id="btnPDF" title="Exportar como PDF">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Descargar PDF
+      </button>
+    </div>
+  </div>
+ 
+ 
+  <!-- ================================================
+       PÁGINA PRINCIPAL
+  ================================================= -->
+  <main class="page-wrapper">
+ 
+    <!-- ================================================
+         RECIBO — elemento capturado para el PDF
+    ================================================= -->
+    <article class="receipt-card" id="receiptCard">
+ 
+      <!-- ============================================
+           SEC 1 · ENCABEZADO
+           Logo | Checkboxes de servicio | Nº Recibo
+      ============================================= -->
+      <header class="receipt-header">
+ 
+        <!-- Logo -->
+        <div class="logo-block">
+          <div class="logo-title">
+            <span class="logo-green">GREEN</span>
+            <span class="logo-amp">&amp;</span>
+            <span class="logo-blue">BLUE</span>
+          </div>
+          <div class="logo-sub">a q u a m a r i n e</div>
+          <div class="logo-tagline">Efecto y prevención en la funcionalidad física</div>
+        </div>
+ 
+        <!-- Checkboxes de servicio + teléfono -->
+        <div class="services-block">
+          <div class="services-row">
+            <label class="service-label">
+              <input type="checkbox" id="chk-rehab" data-save="rehabilitacion" />
+              REHABILITACIÓN
+            </label>
+            <label class="service-label">
+              <input type="checkbox" id="chk-entre" data-save="entretenimiento" />
+              ENTRETENIMIENTO
+            </label>
+            <label class="service-label">
+              <input type="checkbox" id="chk-masaj" data-save="masajes" />
+              MASAJES
+            </label>
+            <label class="service-label">
+              <input type="checkbox" id="chk-nata" data-save="natacion" />
+              NATACIÓN
+            </label>
+          </div>
+          <div class="phone-row">
+            <span class="phone-icon">📱</span>
+            <span class="phone-number">318 868 8008 / 310 740 6038</span>
+          </div>
+        </div>
+ 
+        <!-- Número de recibo (auto-incrementado) -->
+        <div class="receipt-number-block">
+          <div class="receipt-label">RECIBO</div>
+          <div class="receipt-num-row">
+            <span class="receipt-nro">N°</span>
+            <span class="receipt-num" id="receiptNumber">0480</span>
+          </div>
+        </div>
+ 
+      </header>
+ 
+ 
+      <!-- ============================================
+           SEC 2 · FECHAS
+           Cajas separadas DD / MM / AAAA
+           data-nav-order: posición en el orden de navegación con Enter
+      ============================================= -->
+      <section class="dates-row">
+ 
+        <div class="date-group">
+          <label class="field-label">Fecha<br />Inicio</label>
+          <div class="date-boxes">
+            <!-- maxlength + inputmode mejoran la UX en móvil -->
+            <input type="text" class="date-box" maxlength="2" placeholder="DD"
+                   inputmode="numeric" data-save="fechaInicioDD" data-nav="1" />
+            <input type="text" class="date-box" maxlength="2" placeholder="MM"
+                   inputmode="numeric" data-save="fechaInicioMM" data-nav="2" />
+            <input type="text" class="date-box date-box--year" maxlength="4" placeholder="AAAA"
+                   inputmode="numeric" data-save="fechaInicioAA" data-nav="3" />
+          </div>
+        </div>
+ 
+        <div class="date-group">
+          <label class="field-label">Fecha<br />Finalización</label>
+          <div class="date-boxes">
+            <input type="text" class="date-box" maxlength="2" placeholder="DD"
+                   inputmode="numeric" data-save="fechaFinDD" data-nav="4" />
+            <input type="text" class="date-box" maxlength="2" placeholder="MM"
+                   inputmode="numeric" data-save="fechaFinMM" data-nav="5" />
+            <input type="text" class="date-box date-box--year" maxlength="4" placeholder="AAAA"
+                   inputmode="numeric" data-save="fechaFinAA" data-nav="6" />
+          </div>
+        </div>
+ 
+      </section>
+ 
+ 
+      <!-- ============================================
+           SEC 3 · DATOS DEL USUARIO
+      ============================================= -->
+      <section class="user-data-section">
+ 
+        <div class="user-row">
+          <div class="field-group field-group--wide">
+            <label class="field-label">Señor (es):</label>
+            <input type="text" class="underline-input"
+                   data-save="senores" data-nav="7" />
+          </div>
+          <div class="field-group field-group--wide">
+            <label class="field-label">Dirección:</label>
+            <input type="text" class="underline-input"
+                   data-save="direccion" data-nav="8" />
+          </div>
+        </div>
+ 
+        <div class="contact-row">
+          <div class="field-group field-group--tel">
+            <label class="field-label">Teléfono:</label>
+            <input type="tel" class="underline-input"
+                   data-save="telefono" data-nav="9" />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Ciudad:</label>
+            <input type="text" class="underline-input underline-input--sm"
+                   data-save="ciudad" data-nav="10" />
+          </div>
+          <div class="field-group field-group--xs">
+            <label class="field-label">Edad:</label>
+            <input type="text" class="underline-input underline-input--xs"
+                   inputmode="numeric" data-save="edad" data-nav="11" />
+          </div>
+          <div class="field-group field-group--xs">
+            <label class="field-label">Peso:</label>
+            <input type="text" class="underline-input underline-input--xs"
+                   inputmode="decimal" data-save="peso" data-nav="12" />
+          </div>
+          <div class="field-group field-group--xs">
+            <label class="field-label">Talla:</label>
+            <input type="text" class="underline-input underline-input--xs"
+                   inputmode="decimal" data-save="talla" data-nav="13" />
+          </div>
+          <div class="field-group field-group--xs">
+            <label class="field-label">PPL:</label>
+            <input type="text" class="underline-input underline-input--xs"
+                   data-save="ppl" data-nav="14" />
+          </div>
+        </div>
+ 
+      </section>
+ 
+ 
+      <!-- ============================================
+           SEC 4 · TABLA DESCRIPCIÓN
+           - table-layout: fixed (en CSS) para columnas estables
+           - colgroup define anchos exactos en %
+           - data-row / data-col identifican cada celda para navegación con flechas
+      ============================================= -->
+      <section class="description-section">
+        <table class="description-table" id="descTable">
+ 
+          <!-- Anchos fijos: 75 % descripción / 25 % valor -->
+          <colgroup>
+            <col class="col-desc-width" />
+            <col class="col-total-width" />
+          </colgroup>
+ 
+          <thead>
+            <tr>
+              <th scope="col" class="th-desc">DESCRIPCIÓN</th>
+              <th scope="col" class="th-total">VR. TOTAL</th>
+            </tr>
+          </thead>
+ 
+          <tbody id="descTableBody">
+            <!-- Filas generadas con data-row (0-4) y data-col (0=desc, 1=valor) -->
+            <tr>
+              <td class="desc-cell">
+                <input type="text" class="table-input"
+                       data-save="desc1" data-nav="15" data-row="0" data-col="0" />
+              </td>
+              <td class="total-cell">
+                <!-- data-value-input: marcador para cálculo del total -->
+                <input type="text" class="table-input table-input--right"
+                       data-save="val1" data-nav="16" data-row="0" data-col="1"
+                       data-value-input inputmode="numeric" placeholder="0" />
+              </td>
+            </tr>
+            <tr>
+              <td class="desc-cell">
+                <input type="text" class="table-input"
+                       data-save="desc2" data-nav="17" data-row="1" data-col="0" />
+              </td>
+              <td class="total-cell">
+                <input type="text" class="table-input table-input--right"
+                       data-save="val2" data-nav="18" data-row="1" data-col="1"
+                       data-value-input inputmode="numeric" placeholder="0" />
+              </td>
+            </tr>
+            <tr>
+              <td class="desc-cell">
+                <input type="text" class="table-input"
+                       data-save="desc3" data-nav="19" data-row="2" data-col="0" />
+              </td>
+              <td class="total-cell">
+                <input type="text" class="table-input table-input--right"
+                       data-save="val3" data-nav="20" data-row="2" data-col="1"
+                       data-value-input inputmode="numeric" placeholder="0" />
+              </td>
+            </tr>
+            <tr>
+              <td class="desc-cell">
+                <input type="text" class="table-input"
+                       data-save="desc4" data-nav="21" data-row="3" data-col="0" />
+              </td>
+              <td class="total-cell">
+                <input type="text" class="table-input table-input--right"
+                       data-save="val4" data-nav="22" data-row="3" data-col="1"
+                       data-value-input inputmode="numeric" placeholder="0" />
+              </td>
+            </tr>
+            <tr>
+              <td class="desc-cell">
+                <input type="text" class="table-input"
+                       data-save="desc5" data-nav="23" data-row="4" data-col="0" />
+              </td>
+              <td class="total-cell">
+                <input type="text" class="table-input table-input--right"
+                       data-save="val5" data-nav="24" data-row="4" data-col="1"
+                       data-value-input inputmode="numeric" placeholder="0" />
+              </td>
+            </tr>
+          </tbody>
+ 
+        </table>
+      </section>
+ 
+ 
+      <!-- ============================================
+           SEC 5 · OBSERVACIONES
+      ============================================= -->
+      <section class="observations-section">
+        <div class="obs-label">OBSERVACIONES</div>
+        <textarea class="obs-textarea" rows="3"
+                  data-save="observaciones" data-nav="25"></textarea>
+      </section>
+ 
+ 
+      <!-- ============================================
+           SEC 6 · TOTAL (readonly — calculado por JS)
+      ============================================= -->
+      <section class="total-section">
+        <div class="total-row">
+          <span class="total-label">TOTAL</span>
+          <div class="total-value-box">
+            <span class="currency-sign">$</span>
+            <!-- readonly: el usuario no lo edita manualmente -->
+            <input type="text" id="totalFinal" class="total-input"
+                   readonly data-save="totalFinal"
+                   title="Se calcula automáticamente" />
+          </div>
+        </div>
+      </section>
+ 
+ 
+      <!-- ============================================
+           SEC 7 · FIRMAS
+      ============================================= -->
+      <footer class="signatures-section">
+        <div class="signature-block">
+          <div class="signature-line"></div>
+          <p class="signature-label">FIRMA DEL INSTRUCTOR</p>
+        </div>
+        <div class="signature-block">
+          <div class="signature-line"></div>
+          <p class="signature-label">FIRMA DEL USUARIO</p>
+        </div>
+      </footer>
+ 
+    </article>
+ 
+  </main>
+ 
+ 
+  <!-- ================================================
+       MODAL — confirmación de Nuevo Recibo
+  ================================================= -->
+  <div class="modal-overlay" id="modalOverlay" role="dialog"
+       aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div class="modal-card">
+      <div class="modal-icon">🗒️</div>
+      <h2 class="modal-title" id="modalTitle">¿Crear nuevo recibo?</h2>
+      <p class="modal-desc">
+        El formulario se limpiará y el número avanzará al siguiente.
+        Esta acción no se puede deshacer.
+      </p>
+      <div class="modal-actions">
+        <button class="btn btn--ghost"    id="modalCancelar">Cancelar</button>
+        <button class="btn btn--primary"  id="modalConfirmar">Sí, nuevo recibo</button>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- Toast de notificaciones -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+ 
+  <script src="pdf .js"></script>
+</body>
+</html>
+ 
