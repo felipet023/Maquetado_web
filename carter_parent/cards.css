@@ -2,77 +2,243 @@ body{
     display: flex;
     background-color: black;
     color: white;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     margin: 0;
     align-items: center;
-    font-family: arial, Arial, Helvetica, sans-serif;
-    overflow: hidden;
-
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
 }
-@keyframes fadeIn {
-    0% { 
-        border-top-color: green;
-        border-top-color: green;
-        border-left-color: rgb(0, 24, 0);
-        border-right-color: rgb(0, 24, 0);
-    }
-        50% {
-            border-bottom-color: rgb(0, 24, 0);
-            border-top-color: rgb(0, 24, 0);
-            border-left-color: green;
-            border-right-color: green;
 
-        }
-    
-    100% { 
+@keyframes bordeVerde {
+    0%{
         border-bottom-color: green;
         border-top-color: green;
         border-left-color: rgb(0, 24, 0);
         border-right-color: rgb(0, 24, 0);
-
     }
-
+    50%{
+        border-bottom-color: rgb(0, 24, 0);
+        border-top-color: rgb(0, 24, 0);
+        border-left-color: green;
+        border-right-color: green;
+    }
+    100%{
+        border-bottom-color: green;
+        border-top-color: green;
+        border-left-color: rgb(0, 24, 0);
+        border-right-color: rgb(0, 24, 0);
+        }
 }
-.contenedorinicio{
+
+.contenedorInicio{
     display: flex;
     flex-direction: column;
-    background-color: rgb(0, 53, 0);
-    padding: 1.5em;
+    background-color: rgb(0,53,0);
+    padding: 1.5rem;
+    border: 7px solid black;
     border-radius: 10px;
     margin: auto;
-    animation: bordeverde 1.5s infinite;
-    gap:10px;
-    
+    animation: bordeVerde 1.5s infinite;
+    gap: 10px;
 }
-.contenedorinicio.off{
+
+/*Este contenedorInicio.off el .off se añade con el Javascrip´t y funciona con la clase añadida
+de lo contrario si se coloca la subclase off no se mostratia al inicio*/ 
+
+.contenedorInicio.off{
     display: none;
-    
 }
+
 .titulo{
     margin: 13px auto;
-    color: rgb(255, 236, 69);
-    font-size: 2em;
+    color: rgb(255,236,69);
+    font-size: 2rem;
     font-family: cursive;
 }
 .subtitulo{
     font-size: 2rem;
-    margin: 10px ;
+    margin: 10px;
 }
+
 ul{
     margin: 0 0 10px 0;
     padding: 10px;
 }
-.textista{
+
+.texLista{
     font-size: 1.2rem;
     padding: 10px 0 10px 0;
 }
-.contenedorBotonInicio{
+.contenedorBotonesInicio{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 20px;
     align-items: center;
     justify-content: center;
-    
+}
+
+.botonesCantidadCartas {
+    background-color: rgb(0, 189, 0);
+    width: 12rem;
+    border: 4px solid black;
+    animation: bordeVerde 1.5s infinite;
+    transition: transform 0.1s ease;
+    color: rgb(0, 0, 0);
+    font-size: 1.2rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.botonesCantidadCartas:hover {
+    transform: scale(1.15);
+}
+
+.botonesCantidadCartas:active {
+    transform: scale(0.9);
+}
+
+.contenedorJuego {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 98%;
+    max-width: 350px;
+    box-sizing: border-box;
+    margin: auto;
+    background-color: rgb(0, 53, 0);
+    padding: 1rem;
+    border: 7px solid black;
+    border-radius: 10px;
+    animation: bordeVerde 1.5s infinite;
+    gap: 30px;
+}
+
+.contenedorJuego.off {
+    display: none;
+}
+
+.tableroJuego20 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 25px;
+}
+
+.tableroJuego20.off {
+    display: none;
+}
+
+.tableroJuego12 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 25px;
+}
+
+.tableroJuego12.off {
+    display: none;
+}
+
+.cartas {
+    display: flex;
+    width: 3rem;
+    height: 5rem;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    border-radius: 5px;
+    transition: transform 0.5s ease, font-size 0.6s ease;
+}
+
+.cartas.off {
+    transform: scalex(-1);
+    font-size: 0px;
+}
+
+.contenedorTiempo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0, 39, 0);
+    padding: 0.5rem;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+.textTiempo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    width: 90%;
+    height: 40px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    background-color: black;
+}
+
+.contenedorResultado {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 98%;
+    max-width: 350px;
+    box-sizing: border-box;
+    margin: auto;
+    background-color: rgb(0, 53, 0);
+    padding: 1rem;
+    border: 7px solid black;
+    border-radius: 10px;
+    animation: bordeVerde 1.5s infinite;
+    gap: 10px;
+}
+
+.contenedorResultado.off {
+    display: none;
+}
+
+#tiempoResultado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    padding: 5px;
+    width: 60%;
+    max-width: 200px;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+
+.botonReiniciar {
+    background-color: rgb(0, 189, 0);
+    width: 12rem;
+    border: 4px solid black;
+    animation: bordeVerde 1.5s infinite;
+    transition: transform 0.1s ease;
+    color: rgb(0, 0, 0);
+    font-size: 1.2rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.botonReiniciar:hover {
+    transform: scale(1.2);
+}
+
+.botonReiniciar:active {
+    transform: scale(0.9);
 }

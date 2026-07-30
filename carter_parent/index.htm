@@ -3,87 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-<link rel="stylesheet" href="cards.css">
-
-
+    <title>Parejas ocultas</title>
+    <link rel="stylesheet" href="cards.css">
 </head>
 <body>
-    <div class="contenedorinicio">
-    <h1 class="titulo">parejas ocultas </h1>
-    <h2 class="subtitulo">bienvenido a el juego de parejas ocultas</h2>
-    <h2 class="subtitulo">¿como se juega?</h2>
+    <div class="contenedorInicio">
+        <h1 class="titulo">Parejas Ocultas</h1>
+        <h2 class="subtitulo">Bienvenido al juego de parejas ocultas</h2>
+        <h2 class="subtitulo">¿Cómo se juega?</h2>
+        <ul>
+            <li type="none" class="textLista">Eliges con cuantas cartas quieres jugar</li>
+            <li type="none" class="textLista">Cada arta tiene una pareja, tienes que destapar las parejas.</li>
+            <li type="none" class="textLista">Para encontrar las 12 cartas tienes 30 segundos y para las 20 cartas tienes 1 minuto.</li>
 
+        </ul>
 
-    <ul>
-<li type ="none" class="textista">elige cuantas cartas quieres jugar </li>
-<li type ="none"class="textista">cada carta tiene una pareja y tienes que detapar la pareja </li>
-<li type ="none" class="textista">para encntrar la s12 cartas tiens 30 segundos y para las 20 cartas tiene 1 minutos </li>
-    </ul>
-
-<h2 class="subtitulo">elige el numero de cartas</h2> 
-<div class="contenedorBotonesInicio">
-    <button class="botones de cantidad de cartas " data-cantidad="12">12 cartas</button>
-    <button class="boton de cantidad de caartas " id="boton20" data-cantidad="20">20 cartas</button>
+        <h2 class="subtitulo">Elige la cantidad de cartas:</h2>
+        <div class="contenedorBotonesInicio">
+            <button class="botonesCantidadCartas" data-cantidad="12">12 CARTAS</button>
+            <button class="botonesCantidadCartas" data-cantidad="20">20 CARTAS</button>
+        </div>
     </div>
+    <div class="contenedorJuego off">
+        <h2 class="titulo">Parejas Ocultas</h2>
+        <section class="tableroJuego20 off">
+            <div class="cartas off" id="espacio1"></div>
+            <div class="cartas off" id="espacio2"></div>
+            <div class="cartas off" id="espacio3"></div>
+            <div class="cartas off" id="espacio4"></div>
+            <div class="cartas off" id="espacio5"></div>
+            <div class="cartas off" id="espacio6"></div>
+            <div class="cartas off" id="espacio7"></div>
+            <div class="cartas off" id="espacio8"></div>
+            <div class="cartas off" id="espacio9"></div>
+            <div class="cartas off" id="espacio10"></div>
+            <div class="cartas off" id="espacio11"></div>
+            <div class="cartas off" id="espacio12"></div>
+            <div class="cartas off" id="espacio13"></div>
+            <div class="cartas off" id="espacio14"></div>
+            <div class="cartas off" id="espacio15"></div>
+            <div class="cartas off" id="espacio16"></div>
+            <div class="cartas off" id="espacio17"></div>
+            <div class="cartas off" id="espacio18"></div>
+            <div class="cartas off" id="espacio19"></div>
+            <div class="cartas off" id="espacio20"></div>
+        </section>
 
-
-</div>
-
-    <div class="contenedordejuego off"
-    <h2 class="titulo">parejas ocultas </h2>
-    <seccion class="tableroJuego20 off">
-
-
-        <div class="cartas off" id="espacio1"> </div>
-        <div class="cartas off" id="espacio2"> </div>
-        <div class="cartas off" id="espacio3"> </div>
-        <div class="cartas off" id="espacio4"> </div>
-        <div class="cartas off" id="espacio5"> </div>
-        <div class="cartas off" id="espacio6"> </div>
-        <div class="cartas off" id="espacio7"> </div>
-        <div class="cartas off" id="espacio8"> </div>
-        <div class="cartas off" id="espacio9"> </div>
-        <div class="cartas off" id="espacio10"> </div>
-        <div class="cartas off" id="espacio11"> </div>
-        <div class="cartas off" id="espacio12"> </div>
-        <div class="cartas off" id="espacio13"> </div>
-        <div class="cartas off" id="espacio14"> </div>
-        <div class="cartas off" id="espacio15"> </div>
-        <div class="cartas off" id="espacio16"> </div>
-        <div class="cartas off" id="espacio17"> </div>
-        <div class="cartas off" id="espacio18"> </div>
-        <div class="cartas off" id="espacio19"> </div>
-        <div class="cartas off" id="espacio20"> </div>
-    
-    </seccion>
-    <section class="tableroJuego12 off">
-        <div class="cartas off" id="espacio21"> </div>
-        <div class="cartas off" id="espacio22"> </div>
-        <div class="cartas off" id="espacio23"> </div>
-        <div class="cartas off" id="espacio24"> </div>
-        <div class="cartas off" id="espacio25"> </div>
-        <div class="cartas off" id="espacio26"> </div>
-        <div class="cartas off" id="espacio27"> </div>
-        <div class="cartas off" id="espacio28"> </div>
-        <div class="cartas off" id="espacio29"> </div>
-        <div class="cartas off" id="espacio30"> </div>
-        <div class="cartas off" id="espacio31"> </div>
-        <div class="cartas off" id="espacio32"> </div>
-    </section>
-    <section class="contenedorTiempo">
-        <h2 class="subtitulo">tiempo restante</h2>
-        <h2 class="textTiempo" id="tiempo"> </h2>
-    </section>
+        <section class="tableroJuego12 off">
+            <div class="cartas off" id="espacio21"></div>
+            <div class="cartas off" id="espacio22"></div>
+            <div class="cartas off" id="espacio23"></div>
+            <div class="cartas off" id="espacio24"></div>
+            <div class="cartas off" id="espacio25"></div>
+            <div class="cartas off" id="espacio26"></div>
+            <div class="cartas off" id="espacio27"></div>
+            <div class="cartas off" id="espacio28"></div>
+            <div class="cartas off" id="espacio29"></div>
+            <div class="cartas off" id="espacio30"></div>
+            <div class="cartas off" id="espacio31"></div>
+            <div class="cartas off" id="espacio32"></div>
+        </section>
+        <section class="contenedorTiempo">
+            <h2 class="subtitulo">Tiempo:</h2>
+            <div class="textTiempo"></div>
+        </section>
     </div>
 
     <div class="contenedorResultado off">
-        <h2 class="titulo" id="tituloResultado">parejas ocultas </h2>
-        <h2 class="subtitulo" > tiempo</h2>
+        <h2 class="titulo" id="tituloResultado"></h2>
+        <h2 class="subtitulo">Tiempo:</h2>
         <h2 class="subtitulo" id="tiempoResultado"></h2>
-        <button class="botonReiniciar" id="reiniciar">reiniciar</button>
-        </div>
-        <script src="card.js"></script>
+        <button class="botonReiniciar">Volver a jugar</button>
+    </div>
+    <script src="card.js"></script>
+
 
 </body>
 </html>
